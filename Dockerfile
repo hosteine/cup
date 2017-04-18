@@ -4,9 +4,11 @@ MAINTAINER Oleksii Antypov <echo@wivern.co.uk>
 MAINTAINER Viacheslav Pryimak <pbotanik@gmail.com>
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk update && \
     apk add \
       bash \
+      git \
       mc \
       curl \
       ssmtp \
@@ -36,9 +38,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
       php7-session \
       php7-mcrypt \
       php7-sockets \
+      php7-redis \
+      composer \
       supervisor \
       && \
-    ln -s /usr/bin/php7 /usr/bin/php && \
     rm -rf /var/cache/apk/*
 
 COPY data /data
@@ -51,7 +54,9 @@ RUN rm -rf /etc/apache2 && \
     ln -s /data/apache2 /etc/
 
 RUN rm -rf /etc/redis.conf && \
-    ln -s /data/redis/redis.conf /etc/  
+    ln -s /data/redis/redis.conf /etc/
+
+RUN ln -s /data/php/php.ini /etc/php7/conf.d/
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 

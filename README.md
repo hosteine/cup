@@ -15,5 +15,5 @@ docker build -t hosteine .
 
 3. Run container
 ```
-docker run -d -v `pwd`/data:/data hosteine
+docker run -d -v `pwd`/data:/data -p 8888:80 --memory="192m" hosteine
 ```
