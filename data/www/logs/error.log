@@ -1,0 +1,2 @@
+[Tue Apr 18 09:46:41.014881 2017] [mpm_prefork:notice] [pid 544] AH00163: Apache/2.4.25 (Unix) PHP/7.0.17 configured -- resuming normal operations
+[Tue Apr 18 09:46:41.014920 2017] [core:notice] [pid 544] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
