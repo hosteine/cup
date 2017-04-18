@@ -1,3 +1,0 @@
-172.17.0.1 - - [18/Apr/2017:09:47:12 +0000] "GET /index.php HTTP/1.1" 200 77456 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36"
-172.17.0.1 - - [18/Apr/2017:09:47:50 +0000] "GET / HTTP/1.1" 200 78030 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36"
-172.17.0.1 - - [18/Apr/2017:09:47:51 +0000] "GET / HTTP/1.1" 200 77428 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36"
