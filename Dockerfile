@@ -52,6 +52,8 @@ RUN rm -rf /etc/apache2 && \
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+RUN mkdir /run/apache2
+
 VOLUME /data
 
 EXPOSE 80 22
