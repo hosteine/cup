@@ -50,6 +50,9 @@ RUN chown -R mysql:mysql /data/mysql && \
 RUN rm -rf /etc/apache2 && \
     ln -s /data/apache2 /etc/
 
+RUN rm -rf /etc/redis.conf && \
+    ln -s /data/redis/redis.conf /etc/  
+
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir /run/apache2
