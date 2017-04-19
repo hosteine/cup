@@ -1,0 +1,27 @@
+#!bin/bash
+
+MEMORY=$(awk '/MemTotal/{print $2}' /proc/meminfo)
+
+LOCKFILE="/$MEMORY.lock"
+
+MYSQLDATA="/var/lib/mysql"
+MYSQLFILE="$MYSQLDATA/ib_logfile0"
+
+
+echo "Physical memory avaliable: $MEMORY kb"
+
+if [ ! -f "$LOCKFILE" ]; then
+  echo "Configuring templates..."
+  # TODO: Configure templates with memory settings:
+  # apache (48m)
+  # php (64m)
+  # mysql (64m)
+  # redis (16m)
+
+  touch "$LOCKFILE"
+fi
+
+if [ ! -f "$MYSQLFILE" ]; then
+  echo "Configuring mysql database to $MYSQLDATA..."
+  mysql_install_db --user=mysql --data="$MYSQLDATA"
+fi

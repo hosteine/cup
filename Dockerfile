@@ -44,26 +44,31 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
       && \
     rm -rf /var/cache/apk/*
 
+COPY bin /hosteine/bin
 COPY data /data
+COPY config /config
 
 RUN chown -R mysql:mysql /data/mysql && \
-    rm -rf /var/lib/mysql && \
-    ln -s /data/mysql /var/lib/
+    rm -rf /var/lib/mysql /etc/mysql/my.cnf && \
+    ln -s /data/mysql /var/lib/ \
+    ln -s /config/mysql/my.cnf /etc/mysql/
 
 RUN rm -rf /etc/apache2 && \
-    ln -s /data/apache2 /etc/
+    ln -s /config/apache2 /etc/
 
 RUN rm -rf /etc/redis.conf && \
-    ln -s /data/redis/redis.conf /etc/
+    ln -s /config/redis/redis.conf /etc/
 
-RUN ln -s /data/php/php.ini /etc/php7/conf.d/
+RUN ln -s /config/php/php.ini /etc/php7/conf.d/
 
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir /run/apache2
 
+RUN chmod +x /hosteine/bin/*
+
 VOLUME /data
 
 EXPOSE 80 22
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/hosteine/bin/boot"]
